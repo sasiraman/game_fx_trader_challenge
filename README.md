@@ -68,7 +68,22 @@ Alternatively, use the provided build script:
 
 ### 4. Host the Build
 
-#### Option A: Simple HTTP Server
+#### Option A: Docker Deployment (Recommended)
+
+Deploy both the WebGL game and mock API server using Docker:
+
+```bash
+# Build and start all services
+docker-compose up -d
+
+# Access the game
+# WebGL Game: http://localhost:8080
+# API Server: http://localhost:3000
+```
+
+See [DOCKER_DEPLOYMENT.md](DOCKER_DEPLOYMENT.md) for detailed Docker deployment instructions.
+
+#### Option B: Simple HTTP Server
 
 ```bash
 cd WebGLBuild
@@ -78,7 +93,7 @@ python3 -m http.server 8000
 
 Open `http://localhost:8000` in browser
 
-#### Option B: Nginx
+#### Option C: Nginx
 
 ```nginx
 server {

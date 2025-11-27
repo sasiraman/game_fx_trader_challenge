@@ -1,0 +1,49 @@
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# Unity generated files
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Unity cache
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Node modules (will be installed in container)
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Documentation (not needed in containers)
+*.md
+LICENSE
+
+# IDE files
+.vscode/
+.idea/
+*.sln
+*.suo
+*.user
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build artifacts (will be copied separately)
+WebGLBuild/
+
