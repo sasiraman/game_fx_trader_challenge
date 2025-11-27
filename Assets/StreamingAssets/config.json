@@ -1,0 +1,13 @@
+{
+  "useBackend": false,
+  "apiBaseUrl": "http://localhost:3000",
+  "jwtToken": "",
+  "mockSeed": 12345,
+  "initialCredits": 10000,
+  "availableCorridors": [
+    "USD_SGD",
+    "USD_INR",
+    "EUR_USD"
+  ]
+}
+

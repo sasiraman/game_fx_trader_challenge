@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>FX Trader Challenge</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #configPanel {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        #configPanel h3 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+        .config-item {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+        input, select {
+            padding: 8px;
+            width: 300px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #333;
+            color: #fff;
+            font-size: 14px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #unityContainer {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .info {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div id="configPanel">
+        <h3>⚙️ Game Configuration</h3>
+        <div class="info">
+            Configure the game mode and API settings. Changes take effect after reloading the page.
+        </div>
+        <div class="config-item">
+            <label>Mode:</label>
+            <select id="modeSelect">
+                <option value="mock">Mock Mode (Offline)</option>
+                <option value="backend">Backend Mode (API)</option>
+            </select>
+        </div>
+        <div class="config-item">
+            <label>API Base URL:</label>
+            <input type="text" id="apiUrl" value="http://localhost:3000" placeholder="http://localhost:3000" />
+        </div>
+        <div class="config-item">
+            <label>Mock Seed:</label>
+            <input type="number" id="mockSeed" value="12345" />
+        </div>
+        <button onclick="applyConfig()">Apply Configuration</button>
+        <button onclick="toggleConfig()" style="background: #666; margin-left: 10px;">Hide/Show Config</button>
+    </div>
+    <div id="unityContainer"></div>
+    
+    <script>
+        var buildUrl = "Build";
+        var loaderUrl = buildUrl + "/Build.loader.js";
+        var config = {
+            dataUrl: buildUrl + "/Build.data",
+            frameworkUrl: buildUrl + "/Build.framework.js",
+            codeUrl: buildUrl + "/Build.wasm",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "FX Trader",
+            productName: "FX Trader Challenge",
+            productVersion: "1.0"
+        };
+
+        function applyConfig() {
+            var mode = document.getElementById('modeSelect').value;
+            var apiUrl = document.getElementById('apiUrl').value;
+            var mockSeed = parseInt(document.getElementById('mockSeed').value);
+            
+            // Store config in localStorage
+            var gameConfig = {
+                useBackend: mode === 'backend',
+                apiBaseUrl: apiUrl,
+                mockSeed: mockSeed
+            };
+            
+            localStorage.setItem('gameConfig', JSON.stringify(gameConfig));
+            
+            // Also try to set via Unity's Application.ExternalCall if available
+            if (typeof unityInstance !== 'undefined' && unityInstance.SendMessage) {
+                try {
+                    unityInstance.SendMessage('ConfigManager', 'UpdateConfigFromWeb', JSON.stringify(gameConfig));
+                } catch(e) {
+                    console.log('Unity not ready yet, config saved to localStorage');
+                }
+            }
+            
+            alert('Configuration saved! Reload the page to apply changes.');
+        }
+
+        function toggleConfig() {
+            var panel = document.getElementById('configPanel');
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Load saved config
+        window.addEventListener('load', function() {
+            var savedConfig = localStorage.getItem('gameConfig');
+            if (savedConfig) {
+                try {
+                    var config = JSON.parse(savedConfig);
+                    document.getElementById('modeSelect').value = config.useBackend ? 'backend' : 'mock';
+                    document.getElementById('apiUrl').value = config.apiBaseUrl || 'http://localhost:3000';
+                    document.getElementById('mockSeed').value = config.mockSeed || 12345;
+                } catch(e) {
+                    console.error('Failed to load saved config:', e);
+                }
+            }
+        });
+
+        var container = document.querySelector("#unityContainer");
+        var canvas = document.createElement("canvas");
+        var loadingBar = document.createElement("div");
+        loadingBar.style.cssText = "width: 100%; height: 100%; background: #2a2a2a; display: flex; align-items: center; justify-content: center; min-height: 400px;";
+        loadingBar.innerHTML = "<div style='text-align: center;'><h2>Loading FX Trader Challenge...</h2><p>Please wait while the game loads.</p></div>";
+        container.appendChild(loadingBar);
+
+        var script = document.createElement("script");
+        script.src = loaderUrl;
+        script.onload = () => {
+            createUnityInstance(canvas, config, (progress) => {
+                var progressPercent = Math.round(progress * 100);
+                loadingBar.innerHTML = "<div style='text-align: center;'><h2>Loading FX Trader Challenge...</h2><p>Progress: " + progressPercent + "%</p></div>";
+            }).then((instance) => {
+                container.appendChild(canvas);
+                loadingBar.remove();
+                window.unityInstance = instance;
+            }).catch((message) => {
+                loadingBar.innerHTML = "<div style='text-align: center; color: #f00;'><h2>Error Loading Game</h2><p>" + message + "</p></div>";
+            });
+        };
+        script.onerror = () => {
+            loadingBar.innerHTML = "<div style='text-align: center; color: #f00;'><h2>Error Loading Game</h2><p>Failed to load Build.loader.js. Make sure the WebGL build is in the Build/ directory.</p></div>";
+        };
+        document.body.appendChild(script);
+    </script>
+</body>
+</html>
+
