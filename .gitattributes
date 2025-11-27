@@ -1,0 +1,179 @@
+# Unity generated files
+*.cs text eol=lf
+*.js text eol=lf
+*.boo text eol=lf
+*.shader text eol=lf
+
+*.cs.meta text eol=lf
+*.js.meta text eol=lf
+*.boo.meta text eol=lf
+*.shader.meta text eol=lf
+
+*.prefab text eol=lf
+*.mat text eol=lf
+*.asset text eol=lf
+*.unity text eol=lf
+
+*.prefab.meta text eol=lf
+*.mat.meta text eol=lf
+*.asset.meta text eol=lf
+*.unity.meta text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.tga binary
+*.tif binary
+*.psd binary
+*.exr binary
+*.hdr binary
+*.cubemap binary
+
+*.png.meta text eol=lf
+*.jpg.meta text eol=lf
+*.jpeg.meta text eol=lf
+*.gif.meta text eol=lf
+*.ico.meta text eol=lf
+*.tga.meta text eol=lf
+*.tif.meta text eol=lf
+*.psd.meta text eol=lf
+*.exr.meta text eol=lf
+*.hdr.meta text eol=lf
+*.cubemap.meta text eol=lf
+
+*.fbx binary
+*.FBX binary
+*.dae binary
+*.3ds binary
+*.obj binary
+*.x binary
+*.blend binary
+*.blend1 binary
+*.max binary
+*.c4d binary
+*.mb binary
+*.ma binary
+*.3dm binary
+*.dxf binary
+*.dwg binary
+*.lws binary
+*.lwo binary
+*.lxo binary
+*.modo binary
+*.skp binary
+*.wrl binary
+*.wrz binary
+*.x3d binary
+*.x3db binary
+*.x3dv binary
+*.x3dz binary
+*.zae binary
+*.glb binary
+*.gltf binary
+
+*.fbx.meta text eol=lf
+*.FBX.meta text eol=lf
+*.dae.meta text eol=lf
+*.3ds.meta text eol=lf
+*.obj.meta text eol=lf
+*.x.meta text eol=lf
+*.blend.meta text eol=lf
+*.blend1.meta text eol=lf
+*.max.meta text eol=lf
+*.c4d.meta text eol=lf
+*.mb.meta text eol=lf
+*.ma.meta text eol=lf
+*.3dm.meta text eol=lf
+*.dxf.meta text eol=lf
+*.dwg.meta text eol=lf
+*.lws.meta text eol=lf
+*.lwo.meta text eol=lf
+*.lxo.meta text eol=lf
+*.modo.meta text eol=lf
+*.skp.meta text eol=lf
+*.wrl.meta text eol=lf
+*.wrz.meta text eol=lf
+*.x3d.meta text eol=lf
+*.x3db.meta text eol=lf
+*.x3dv.meta text eol=lf
+*.x3dz.meta text eol=lf
+*.zae.meta text eol=lf
+*.glb.meta text eol=lf
+*.gltf.meta text eol=lf
+
+*.mp3 binary
+*.ogg binary
+*.wav binary
+*.aif binary
+*.aiff binary
+*.mod binary
+*.it binary
+*.s3m binary
+*.xm binary
+
+*.mp3.meta text eol=lf
+*.ogg.meta text eol=lf
+*.wav.meta text eol=lf
+*.aif.meta text eol=lf
+*.aiff.meta text eol=lf
+*.mod.meta text eol=lf
+*.it.meta text eol=lf
+*.s3m.meta text eol=lf
+*.xm.meta text eol=lf
+
+*.mp4 binary
+*.mov binary
+*.avi binary
+*.asf binary
+*.mpeg binary
+
+*.mp4.meta text eol=lf
+*.mov.meta text eol=lf
+*.avi.meta text eol=lf
+*.asf.meta text eol=lf
+*.mpeg.meta text eol=lf
+
+*.ttf binary
+*.otf binary
+*.ttc binary
+
+*.ttf.meta text eol=lf
+*.otf.meta text eol=lf
+*.ttc.meta text eol=lf
+
+*.a binary
+*.so binary
+*.dll binary
+*.bundle binary
+
+*.a.meta text eol=lf
+*.so.meta text eol=lf
+*.dll.meta text eol=lf
+*.bundle.meta text eol=lf
+
+# Text files
+*.txt text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.xml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.csv text eol=lf
+
+*.txt.meta text eol=lf
+*.md.meta text eol=lf
+*.json.meta text eol=lf
+*.xml.meta text eol=lf
+*.yaml.meta text eol=lf
+*.yml.meta text eol=lf
+*.html.meta text eol=lf
+*.css.meta text eol=lf
+*.js.meta text eol=lf
+*.csv.meta text eol=lf
+
